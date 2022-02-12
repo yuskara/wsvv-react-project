@@ -1,0 +1,136 @@
+.header-background-img {
+  background-image: url('../imgs/tecno.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  padding: 10em 0em 10em 4em;
+}
+
+.header-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.header-title {
+  position: relative;
+  text-align: left;
+  width: 75%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+.header-text {
+  color: white;
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 5rem;
+  padding-bottom: 2rem;
+}
+
+.header-button {
+  width: 30%;
+  min-height: 3rem;
+  margin-top: 5rem;
+  background: #80baff;
+  border-radius: 20px;
+  color: #0c2067;
+  padding-top: 1.1rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+}
+
+.header-active-title-btn {
+  color: #0c2067;
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 1024px) {
+  .header-background-img {
+    padding-bottom: 14em;
+  }
+
+  .header-title {
+    width: 70%;
+  }
+
+  .header-text {
+    width: 100%;
+
+    font-size: 3rem;
+  }
+
+  .header-button {
+    width: 47%;
+  }
+}
+
+@media screen and (max-width: 832px) {
+  .header-title {
+    width: 75%;
+  }
+
+  .header-text {
+    width: 100%;
+    line-height: 3.8rem;
+    font-size: 2.3rem;
+  }
+  .header-button {
+    margin-top: 2rem;
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 616px) {
+  .header-title {
+    width: 100%;
+  }
+
+  .header-text {
+    width: 98%;
+    line-height: 3.5rem;
+    font-size: 1.9rem;
+    /* margin-right: 2rem; */
+  }
+
+  .header-button {
+    width: 40%;
+    margin-top: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .header-background-img {
+    padding-left: 2rem;
+  }
+}
+
+@media screen and (max-width: 406px) {
+  .header-title {
+    width: 100%;
+  }
+
+  .header-text {
+    width: 100%;
+    font-size: 1.6rem;
+    line-height: 3rem;
+  }
+
+  .header-button {
+    min-height: 3rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .header-text {
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+  }
+}

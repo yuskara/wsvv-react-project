@@ -1,0 +1,14 @@
+ 
+/*-- Body Reset --*/
+body {
+  overflow-x: hidden;
+  background-color: #fff;
+  line-height: 1.5rem;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+
+

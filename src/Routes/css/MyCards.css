@@ -1,0 +1,96 @@
+.PaymentPage{
+	background-color: rgb(243, 228, 219);
+	font-family: 'montserrat', Helvetica, sans-serif;
+    width: 100%;
+    color:black;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#PaymentForm {
+	width: 500px;
+	display: flex;
+	height: 155vh;
+	flex-direction: column;
+	background: #e4dada;
+	border-radius: 10px;
+}
+
+.PaymentForm {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.PaymentFormInput {
+	background: #f1f1f1;
+	padding: 10px;
+	width: 100%;
+	border: none;
+	margin-bottom: 20px;
+	font-size: 26px;
+	color: rgb(0, 0, 0);
+	outline: none;
+	font-weight: 500;
+	border-radius: 15px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+ 
+.rccs__card--unknown > div {
+	background: #75c9a5;
+}
+#PaymentCountryId{
+	border-radius: 15px;
+  	background-color: #f1f1f1;
+  	max-width: 100px;
+	height: 50px;
+	font-size: large;
+  	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+ /* responsive for mobile display */
+ @media only screen and (max-width: 1024px) {
+	#PaymentForm {
+		height: 80%;  
+	}
+  }
+@media only screen and (max-width: 600px) {
+	#PaymentForm {
+		width: 80%;
+		height: 80%;  
+	}
+	.PaymentFormInput { 
+		width: 90%;		 
+		margin-bottom: 10px;		 
+	}
+  }
+  
+@media only screen and (max-width: 500px) {
+	#PaymentForm {
+		width: 80%;
+		height: 80%;
+	}
+	.PaymentFormInput {
+		padding: 3px;
+		width: 90%;	
+		font-size: 90%; 
+	}
+ 
+  }	 
+ 
+  @media only screen and (max-width: 380px) {
+	#PaymentForm {
+		width: 90%;
+		height: 80%;
+	}
+	.PaymentFormInput {
+		padding: 3px;
+		width: 90%;	 
+		font-size: 80%;
+	}
+ 
+  }	 
+  
+  

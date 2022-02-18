@@ -11,14 +11,13 @@ import { initReactI18next } from "react-i18next";
 import HttpApi from "i18next-http-backend";
 import LanguageDetector from "i18next-browser-languagedetector";
 import "flag-icon-css/css/flag-icon.min.css";
-import { ChakraProvider } from "@chakra-ui/react";
 
 i18next
   .use(HttpApi)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    supportedLngs: ["en", "nl"],
+    supportedLngs: ["nl", "tr", "en"],
     fallbackLng: "en",
     debug: false,
 
@@ -45,7 +44,7 @@ ReactDOM.render(
     {/* <React.StrictMode> */}
     <Helmet>
       <meta charSet="utf-8" />
-      <title>Eksi Nous</title>
+      <title>WSVV</title>
       <link rel="shortcut icon" href={icon} />
     </Helmet>
     <Suspense fallback={loadingMarkup}>

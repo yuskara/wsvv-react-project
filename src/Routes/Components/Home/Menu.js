@@ -32,7 +32,16 @@ const Nav = styled.nav`
 const Logo = styled.img`
   height: 45px;
   width: 45px;
-  margin-left: 50px;
+  max-width: 5vw;
+  margin: 0.3rem 0 0.3rem 3rem;
+  cursor: pointer;
+  @media (max-width: 1200px) {
+    margin: 0.3rem 0 0.3rem 0.2rem;
+  }
+  @media (max-width: 768px) {
+    max-width: 10vw;
+    margin: 0.3rem 0 0.3rem 3rem;
+  }
 `;
 
 const Navbar = styled.ul`
@@ -53,7 +62,7 @@ const Navbar = styled.ul`
 `;
 
 const NavbarLinks = styled.li`
-  padding: 0 3% 0 3%;
+  padding: 0 2% 0 2%;
 `;
 
 const StyledLink = styled.a`
@@ -80,7 +89,7 @@ const NavIcon = styled.button`
   cursor: pointer;
   border: none;
   outline: none;
-  margin-right: 1%;
+  margin-right: 10%;
   @media (min-width: 769px) {
     display: none;
   }
@@ -139,12 +148,16 @@ const OverlayMenu = styled.ul`
 
 const languages = [
   {
-    code: "en",
-    country_code: "gb",
-  },
-  {
     code: "nl",
     country_code: "nl",
+  },
+  {
+    code: "tr",
+    country_code: "tr",
+  },
+  {
+    code: "en",
+    country_code: "gb",
   },
 ];
 
@@ -167,27 +180,49 @@ function Menu() {
     <>
       <Nav>
         <a href="/">
-          <Logo src={logo_foundation} alt="logo" />
+          <Logo src={logo_foundation} alt="logo wsvv" />
         </a>
-        <img
-          src={logo_samen}
-          alt="eskinous logo"
-          className="menu__navbar_logo1"
-        />
         <Navbar>
           <NavbarLinks>
-            <StyledLink href="/">Home</StyledLink>
+            <StyledLink href="/">{t("home")}</StyledLink>
           </NavbarLinks>
           <NavbarLinks>
-            <StyledLink href="#ServicesId">Services</StyledLink>
+            <StyledLink href="#ServicesId">{t("projects")}</StyledLink>
           </NavbarLinks>
           <NavbarLinks>
-            <StyledLink href="#portfolio_more">Portfolio</StyledLink>
+            <StyledLink href="#">{t("volunteers")}</StyledLink>
           </NavbarLinks>
           <NavbarLinks>
-            <StyledLink href="/about">About us</StyledLink>
+            <StyledLink href="#portfolio_more">{t("donate")}</StyledLink>
           </NavbarLinks>
-          <div className="language-select">
+
+          <NavbarLinks>
+            <StyledLink href="#">WSVV</StyledLink>
+            <ul className="rest_menu-dropdown">
+              <li>
+                <a href="#">Menu-1</a>
+              </li>
+              <li>
+                <a href="#">Menu-2</a>
+              </li>
+              <li>
+                <a href="#">Menu-3</a>
+              </li>
+            </ul>
+            <NavIcon onClick={() => setToggle(!toggle)}>
+              <NavbarLinks>
+                <StyledLink href="/about">{t("about")} </StyledLink>
+              </NavbarLinks>
+              <Line toggle={!toggle} />
+              <Line toggle={!toggle} />
+              <Line toggle={!toggle} />
+
+              <NavbarLinks>
+                <StyledLink href="/contact">{t("contact")} </StyledLink>
+              </NavbarLinks>
+            </NavIcon>
+          </NavbarLinks>
+          <div className="menu-language-select">
             <div className="">
               <div className="dropdown">
                 <ul
@@ -235,16 +270,19 @@ function Menu() {
         <div className="menu-dropdown-opts-cont">
           {" "}
           <NavbarLinks>
-            <StyledLink href="/">Home</StyledLink>
+            <StyledLink href="/">{t("home")}</StyledLink>
           </NavbarLinks>
           <NavbarLinks>
-            <StyledLink href="#ServicesId">Services</StyledLink>
+            <StyledLink href="#ServicesId">{t("projects")}</StyledLink>
           </NavbarLinks>
           <NavbarLinks>
-            <StyledLink href="#portfolio_more">Portfolio</StyledLink>
+            <StyledLink href="#portfolio_more">{t("donate")}</StyledLink>
           </NavbarLinks>
           <NavbarLinks>
-            <StyledLink href="#learnAboutUs">About us</StyledLink>
+            <StyledLink href="/about">{t("about")} </StyledLink>
+          </NavbarLinks>
+          <NavbarLinks>
+            <StyledLink href="/contact">{t("contact")} </StyledLink>
           </NavbarLinks>
           <div className="language-select">
             <div className="">

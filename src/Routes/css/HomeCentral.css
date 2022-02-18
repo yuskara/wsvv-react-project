@@ -13,7 +13,7 @@ p {
 
 /*---------- welcome text ----------*/
 .central-hr-welcome {
-  width: 45%;
+  /* width: 45%; */
   background-color: #68a0d2;
   border: 1px #68a0d2 solid;
 }
@@ -85,7 +85,7 @@ p {
 
 /*---------- border ------------*/
 .central-hr-horizonal {
-  width: 80%;
+  /* width: 80%; */
   border: 1px;
   background-color: #616971 !important;
   border-style: solid;

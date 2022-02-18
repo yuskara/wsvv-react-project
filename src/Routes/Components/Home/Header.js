@@ -4,6 +4,7 @@ import Particles from "react-particles-js";
 import particlesConfig from "../../../config/particlesConfig";
 import "../../css/HomeHeader.css";
 import { useTranslation } from "react-i18next";
+import { Tooltip } from "@chakra-ui/react";
 
 function Header() {
   const { t } = useTranslation();
@@ -14,10 +15,14 @@ function Header() {
         <div className="header-title">
           <div className="header-text">{t("welcomeMessage")}</div>
           <div className="header-button">
-            <NavLink to="/" activeClassName="header-active-title-btn">
-              {t("exploreMessage")}
-            </NavLink>
-
+            <Tooltip label="Foundation">
+              <NavLink
+                to="#portfolio_more"
+                activeClassName="header-active-title-btn"
+              >
+                {t("exploreMessage")}
+              </NavLink>
+            </Tooltip>
             <Particles className="header-particles" params={particlesConfig} />
           </div>
         </div>

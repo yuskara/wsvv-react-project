@@ -11,8 +11,8 @@ function Footer() {
             <a href="#">
               <img id="footer-logo" src={footer_logo} alt="logo"></img>
             </a>
-            <h1>
-              <span>WSVV-</span>FOUNDATION
+            <h1 className="footerLogoText">
+              <span>WSVV </span>FOUNDATION
             </h1>
             <h4 className="footer-box2-text">
               We help future bosses of business. Together, we make better.

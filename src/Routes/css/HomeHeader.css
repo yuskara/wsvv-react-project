@@ -1,5 +1,5 @@
 .header-background-img {
-  background-image: url('../imgs/tecno.jpg');
+  background-image: url("../imgs/tecno.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -38,7 +38,7 @@
   background: #80baff;
   border-radius: 20px;
   color: #0c2067;
-  padding-top: 1.1rem;
+  padding-top: 0.1rem;
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;

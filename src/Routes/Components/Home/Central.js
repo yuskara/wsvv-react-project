@@ -3,15 +3,17 @@ import "../../css/HomeCentral.css";
 import FirstSectionCards from "./Central/FirstSectionCards/FirstSectionCards";
 import ToolsWeUse from "./Central/ToolsWeUse/ToolsWeUse";
 import Portfolio from "./Central/Portfolio/Portfolio";
+import { useTranslation } from "react-i18next";
 
 function Central() {
+  const { t } = useTranslation();
   return (
-    <div className="central_home-container">
+    <div id="ServicesId" className="central_home-container">
       {/* <!-- Main page --> */}
       <div className="central-div-welcome-content">
-        <h1 id="services">Welcome to the WSVV FOUNDATION</h1>
+        <h1 id="services"> {t("projectHeader")}</h1>
         <hr className="central-hr-welcome"></hr>
-        <p>For all your professional web designing and development</p>
+        <p>{t("projectSecond")}</p>
       </div>
 
       {/* <!-- first section --> */}

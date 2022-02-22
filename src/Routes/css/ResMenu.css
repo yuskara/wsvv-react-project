@@ -98,8 +98,8 @@
   color: #fcda9a;
 }
 
-.rest_menu-list li:hover > .rest_menu-dropdown,
-.rest_menu-list li .rest_menu-dropdown :hover {
+.rest_menu-list li:hover > .rest_menu-dropdown
+/* .rest_menu-list li .rest_menu-dropdown :hover  */ {
   visibility: visible;
   opacity: 1;
   display: block;

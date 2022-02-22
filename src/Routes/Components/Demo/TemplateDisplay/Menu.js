@@ -102,19 +102,19 @@ const Line = styled.span`
   transition: width 0.4s ease-in-out;
 
   :nth-child(2) {
-    width: ${({ toggle }) => (toggle ? '70%' : '40%')};
+    width: ${({ toggle }) => (toggle ? "70%" : "40%")};
   }
 `;
 
 const Overlay = styled.div`
-  height: ${({ toggle }) => (toggle ? '0' : '100vh')};
+  height: ${({ toggle }) => (toggle ? "0" : "100vh")};
   position: fixed;
   display: flex;
   width: 36vw;
   right: 0;
   top: 9vh;
   background: #fff;
-  box-shadow: ${({ toggle }) => (toggle ? '0' : '8px 0px 5px 9px grey')};
+  box-shadow: ${({ toggle }) => (toggle ? "0" : "8px 0px 5px 9px grey")};
   transition: height 0.4s linear;
 
   @media (min-width: 769px) {
@@ -128,7 +128,7 @@ const OverlayMenu = styled.ul`
   width: inherit;
   left: 50%;
   top: 45%;
-  display: ${({ toggle }) => (toggle ? 'none' : '')};
+  display: ${({ toggle }) => (toggle ? "none" : "")};
   transform: translate(-50%, -50%);
 
   li {
@@ -150,49 +150,48 @@ function Menu() {
   //   setToggle(!false);
   // };
 
-/*=====================+
+  /*=====================+
  |LANGUAGES TRANSLATION|
  +=====================*/
- const languages = [
-   {
-     code: "en",
-     country_code: "gb",
+  const languages = [
+    {
+      code: "en",
+      country_code: "gb",
     },
     {
       code: "gr",
       country_code: "gr",
     },
-];
+  ];
 
   const currentLanguageCode = cookies.get("i18next") || "en";
   const currentLanguage = languages.find((l) => l.code === currentLanguageCode);
   const { t } = useTranslation();
 
   useEffect(() => {
-    document.body.dir = currentLanguage.dir || "ltr";
+    // document.body.dir = currentLanguage.dir || "ltr";
     document.title = t("appTitle");
   }, [currentLanguage, t]);
 
   return (
     <>
       <Nav>
-        <a href='/'>
-          <Logo src={logo_img} alt='logo' />
+        <a href="/">
+          <Logo src={logo_img} alt="logo" />
         </a>
-        <img src={logo_6} alt='eskinous logo' className='menu__navbar_logo1' />
+        <img src={logo_6} alt="eskinous logo" className="menu__navbar_logo1" />
         <Navbar>
           <NavbarLinks>
-            <StyledLink href='/'>Home</StyledLink>
+            <StyledLink href="/">Home</StyledLink>
           </NavbarLinks>
           <NavbarLinks>
-
-          <StyledLink href="/signUp">Sign-Up</StyledLink>
+            <StyledLink href="/signUp">Sign-Up</StyledLink>
           </NavbarLinks>
           <NavbarLinks>
             <StyledLink href="/login">Sign-In</StyledLink>
           </NavbarLinks>
           <NavbarLinks>
-            <StyledLink href='/about'>About us</StyledLink>
+            <StyledLink href="/about">About us</StyledLink>
           </NavbarLinks>
           <div className="language-select">
             <div className="">
@@ -227,64 +226,65 @@ function Menu() {
           </div>
         </Navbar>
         <NavIcon onClick={() => setToggle(!toggle)}>
-        <Line toggle={!toggle} />
-        <Line toggle={!toggle} />
-        <Line toggle={!toggle} />
-      </NavIcon>
-    </Nav>
-    <div
-      className={
-        toggle
-          ? "menu-dropdown-container"
-          : "menu-dropdown-container-inactive"
-      }
-    >
-    <div className="menu-dropdown-opts-cont">
-    {" "}
-    <NavbarLinks>
-      <StyledLink1 href="/">Home</StyledLink1>
-    </NavbarLinks>
-    <NavbarLinks>
-      <StyledLink1 href="/signUp">Sign-Up</StyledLink1>
-    </NavbarLinks>
-    <NavbarLinks>
-      <StyledLink1 href="/login">Sign-In</StyledLink1>
-    </NavbarLinks>
-    <NavbarLinks>
-      <StyledLink1 href="#TemplatesFooterId">About us</StyledLink1>
-    </NavbarLinks>
-    <div className="language-select">
-      <div className="">
-        <div className="dropdown">
-          <ul
-            className="dropdown-menu"
-            aria-labelledby="dropdownMenuButton"
-          >
-          {languages.map(({ code, country_code }) => (
-            <li key={country_code}>
-            <a
-            href="#"
-            className={classNames("dropdown-item", {
-              disabled: currentLanguageCode === code,
-            })}
-            onClick={() => {
-              i18next.changeLanguage(code);
-            }}
-            >
-                  <span
-                    className={`flag-icon flag-icon-${country_code} mx-2`}
-                    style={{
-                      opacity: currentLanguageCode === code ? 0.7 : 1,
-                    }}
-                  ></span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+          <Line toggle={!toggle} />
+          <Line toggle={!toggle} />
+          <Line toggle={!toggle} />
+        </NavIcon>
+      </Nav>
+      <div
+        className={
+          toggle
+            ? "menu-dropdown-container"
+            : "menu-dropdown-container-inactive"
+        }
+      >
+        <div className="menu-dropdown-opts-cont">
+          {" "}
+          <NavbarLinks>
+            <StyledLink1 href="/">Home</StyledLink1>
+          </NavbarLinks>
+          <NavbarLinks>
+            <StyledLink1 href="/signUp">Sign-Up</StyledLink1>
+          </NavbarLinks>
+          <NavbarLinks>
+            <StyledLink1 href="/login">Sign-In</StyledLink1>
+          </NavbarLinks>
+          <NavbarLinks>
+            <StyledLink1 href="#TemplatesFooterId">About us</StyledLink1>
+          </NavbarLinks>
+          <div className="language-select">
+            <div className="">
+              <div className="dropdown">
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="dropdownMenuButton"
+                >
+                  {languages.map(({ code, country_code }) => (
+                    <li key={country_code}>
+                      <a
+                        href="#"
+                        className={classNames("dropdown-item", {
+                          disabled: currentLanguageCode === code,
+                        })}
+                        onClick={() => {
+                          i18next.changeLanguage(code);
+                        }}
+                      >
+                        <span
+                          className={`flag-icon flag-icon-${country_code} mx-2`}
+                          style={{
+                            opacity: currentLanguageCode === code ? 0.7 : 1,
+                          }}
+                        ></span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>{" "}
       </div>
-    </div>
-  </div>    </div>
     </>
   );
 }

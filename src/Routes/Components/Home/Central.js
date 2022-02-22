@@ -4,16 +4,32 @@ import FirstSectionCards from "./Central/FirstSectionCards/FirstSectionCards";
 import ToolsWeUse from "./Central/ToolsWeUse/ToolsWeUse";
 import Portfolio from "./Central/Portfolio/Portfolio";
 import { useTranslation } from "react-i18next";
+import { Heading, Box, Text, Center, Divider } from "@chakra-ui/react";
 
 function Central() {
   const { t } = useTranslation();
   return (
     <div id="ServicesId" className="central_home-container">
       {/* <!-- Main page --> */}
+      <Center height="50px">
+        <Divider orientation="vertical" />
+      </Center>
+      <Center>
+        <Box maxW="62rem" textAlign="central">
+          <Heading as="h1" size="2xl" isTruncated>
+            {t("whoWeAreHeader")}
+          </Heading>
+          <Text as="am" fontSize="xl">
+            {t("whoWeAreParagraph")}
+          </Text>
+        </Box>
+      </Center>
+      <Center height="50px">
+        <Divider orientation="vertical" />
+      </Center>
       <div className="central-div-welcome-content">
         <h1 id="services"> {t("projectHeader")}</h1>
         <hr className="central-hr-welcome"></hr>
-        <p>{t("projectSecond")}</p>
       </div>
 
       {/* <!-- first section --> */}

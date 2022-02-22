@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../../css/HomeMenu.css";
 import logo_foundation from "../../imgs/samen_logo.svg";
-import logo_samen from "../../imgs/samen_logo.svg";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
@@ -81,6 +80,7 @@ const StyledLink = styled.a`
   :hover {
     cursor: pointer;
     background-size: 100% 3px;
+    // visibility: visible;
   }
 `;
 
@@ -168,7 +168,7 @@ function Menu() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    document.body.dir = currentLanguage.dir || "ltr";
+    // document.body.dir = currentLanguage.dir || "ltr";
     document.title = t("appTitle");
   }, [currentLanguage, t]);
 
@@ -182,6 +182,7 @@ function Menu() {
         <a href="/">
           <Logo src={logo_foundation} alt="logo wsvv" />
         </a>
+
         <Navbar>
           <NavbarLinks>
             <StyledLink href="/">{t("home")}</StyledLink>
@@ -197,16 +198,18 @@ function Menu() {
           </NavbarLinks>
 
           <NavbarLinks>
-            <StyledLink href="#">WSVV</StyledLink>
-            <ul className="rest_menu-dropdown">
+            <ul className="wsvv-menu">
               <li>
-                <a href="#">Menu-1</a>
-              </li>
-              <li>
-                <a href="#">Menu-2</a>
-              </li>
-              <li>
-                <a href="#">Menu-3</a>
+                {" "}
+                <a href="#">WSVV</a>
+                <ul className="wsvv-menu-dropdown">
+                  <li>
+                    <a href="/about">{t("about")}</a>
+                  </li>
+                  <li>
+                    <a href="#">{t("contact")}</a>
+                  </li>
+                </ul>
               </li>
             </ul>
             <NavIcon onClick={() => setToggle(!toggle)}>

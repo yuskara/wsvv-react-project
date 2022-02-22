@@ -1,19 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Card, CardBody, Col, Container,
-  Form, Input, InputGroup, Row } from 'reactstrap';
+import React, { useState, useEffect } from "react";
+import {
+  Button,
+  Card,
+  CardBody,
+  Col,
+  Container,
+  Form,
+  Input,
+  InputGroup,
+  Row,
+} from "reactstrap";
 // languages import
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 import cookies from "js-cookie";
 import classNames from "classnames";
 
-import '../../css/UserSignUp.css';
-import moment from 'moment';
-import ReactNotification from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
-import { store } from 'react-notifications-component';
-const axios = require('axios').default;
-const baseUrl = 'http://localhost:8080';
+import "../../css/UserSignUp.css";
+import moment from "moment";
+import ReactNotification from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import { store } from "react-notifications-component";
+const axios = require("axios").default;
+const baseUrl = "http://localhost:8080";
 
 // Language implementation
 const languagesGREN = [
@@ -28,141 +37,190 @@ const languagesGREN = [
 ];
 
 const UserSignUp = () => {
-  const initialInputState = {creationDate:'', firstName: '',lastName: '', email: '', password:'', password2:'',
-    dateOfBirth: '1000-01-01', lookingJobAt:'', userTypeId:1, languageId:'', professionId:'', countryId:'',  genderId:'',cityId:'0'}
-     
-  const [userData, setUserData] = useState(initialInputState)
-  const { creationDate, firstName, lastName, email, password, password2, dateOfBirth, lookingJobAt, userTypeId, languageId, professionId, cityId, genderId } = userData
+  const initialInputState = {
+    creationDate: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    password2: "",
+    dateOfBirth: "1000-01-01",
+    lookingJobAt: "",
+    userTypeId: 1,
+    languageId: "",
+    professionId: "",
+    countryId: "",
+    genderId: "",
+    cityId: "0",
+  };
+
+  const [userData, setUserData] = useState(initialInputState);
+  const {
+    creationDate,
+    firstName,
+    lastName,
+    email,
+    password,
+    password2,
+    dateOfBirth,
+    lookingJobAt,
+    userTypeId,
+    languageId,
+    professionId,
+    cityId,
+    genderId,
+  } = userData;
 
   const notification = {
-		insert: "top",
-		container: "center",
-		dismiss: {
-			duration: 9000,
-			onScreen: true
-		  },
-		animationIn: ["animate__animated animate__fadeIn"], // `animate.css v4` classes
-		animationOut: ["animate__animated animate__fadeOut"] // `animate.css v4` classes
-	  };
+    insert: "top",
+    container: "center",
+    dismiss: {
+      duration: 9000,
+      onScreen: true,
+    },
+    animationIn: ["animate__animated animate__fadeIn"], // `animate.css v4` classes
+    animationOut: ["animate__animated animate__fadeOut"], // `animate.css v4` classes
+  };
   const [countries, setCountries] = useState([]);
   const [cities, setCities] = useState([]);
   const [languages, setLanguages] = useState([]);
   const [professions, setProfessions] = useState([]);
   // language state
   const currentLanguageCode = cookies.get("i18next") || "en";
-  const currentLanguage = languagesGREN.find((l) => l.code === currentLanguageCode);
+  const currentLanguage = languagesGREN.find(
+    (l) => l.code === currentLanguageCode
+  );
   const { t } = useTranslation();
- 
-  const fetchCountries = async() => {
-    try{
-      setCountries(await (await axios.get(baseUrl+'/countries')).data);
-    } catch(error){
+
+  const fetchCountries = async () => {
+    try {
+      setCountries(await (await axios.get(baseUrl + "/countries")).data);
+    } catch (error) {
       console.log(`${error}`);
     }
-  }
-  const fetchCities = async(ctId) => {
-    try{
-      setCities(await (await axios.get(baseUrl+'/cities/byCountry/'+ctId)).data);
-    } catch(error){
+  };
+  const fetchCities = async (ctId) => {
+    try {
+      setCities(
+        await (
+          await axios.get(baseUrl + "/cities/byCountry/" + ctId)
+        ).data
+      );
+    } catch (error) {
       console.log(`${error}`);
     }
-  }
-  const fetchLanguages = async() => {
-    try{
-      setLanguages(await (await axios.get(baseUrl+'/languages')).data);
-    } catch(error){
+  };
+  const fetchLanguages = async () => {
+    try {
+      setLanguages(await (await axios.get(baseUrl + "/languages")).data);
+    } catch (error) {
       console.log(`${error}`);
     }
-  }
-  const fetchProfessions = async() => {
-    try{
-      setProfessions(await (await axios.get(baseUrl+'/professions')).data);
-    } catch(error){
+  };
+  const fetchProfessions = async () => {
+    try {
+      setProfessions(await (await axios.get(baseUrl + "/professions")).data);
+    } catch (error) {
       console.log(`${error}`);
     }
-  }
-  const postUser = async(userData) => {
-    try{
-       await (await axios.post(baseUrl+'/users',userData)).data;
-    } catch(error){
+  };
+  const postUser = async (userData) => {
+    try {
+      await (
+        await axios.post(baseUrl + "/users", userData)
+      ).data;
+    } catch (error) {
       console.log(`${error}`);
     }
-  }
+  };
 
   useEffect(() => {
     fetchCountries();
     fetchLanguages();
     fetchProfessions();
-   // language implementation here
-    document.body.dir = currentLanguage.dir || "ltr";
+    // language implementation here
+    // document.body.dir = currentLanguage.dir || "ltr";
     document.title = t("appTitle");
-    }, []);
- 
+  }, []);
 
-  const handleChange= ( e ) => {
-    e.preventDefault()
-    setUserData({ ...userData, [e.target.name]:e.target.value })
-  }
+  const handleChange = (e) => {
+    e.preventDefault();
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
 
-  const handleChangeCountry= ( e ) => {
-    e.preventDefault()
-    setUserData({ ...userData, countryId:e.target.value })
+  const handleChangeCountry = (e) => {
+    e.preventDefault();
+    setUserData({ ...userData, countryId: e.target.value });
     const ctId = e.target.value;
-    if(ctId>0)fetchCities(ctId);
+    if (ctId > 0) fetchCities(ctId);
     timeStamp();
-  }
+  };
 
-  const timeStamp = () => {  
-    let now = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
-    setUserData({...userData,creationDate:now});
-  }
+  const timeStamp = () => {
+    let now = moment(Date.now()).format("YYYY-MM-DD HH:mm:ss");
+    setUserData({ ...userData, creationDate: now });
+  };
 
-  const addUser = (e) => {  
-    if(password!==password2){
+  const addUser = (e) => {
+    if (password !== password2) {
       store.addNotification({
         ...notification,
-         title: "ooppps !",
-         message: "Your password doesn`t match",
-         type: "danger",
+        title: "ooppps !",
+        message: "Your password doesn`t match",
+        type: "danger",
+      });
+    } else {
+      if (
+        (firstName.length >= 3) &
+        (lastName.length >= 3) &
+        (email.length >= 3) &
+        (password.length >= 3) &
+        (lookingJobAt.length >= 3) &
+        (languageId.length >= 1) &
+        (professionId.length >= 1) &
+        (genderId.length >= 1)
+      ) {
+        postUser(userData);
+        store.addNotification({
+          ...notification,
+          title: "Wonderful!",
+          message: "Registration Successful",
+          type: "success",
         });
-    }else{ 
-      if (firstName.length>=3&lastName.length>=3&email.length>=3&password.length>=3 
-        &lookingJobAt.length>=3&languageId.length>=1&professionId.length>=1&genderId.length>=1){ 
-          postUser(userData);
-          store.addNotification({
-						...notification,
-						title: "Wonderful!",
-						message: "Registration Successful",
-						type: "success",
-				  	});
-					  setTimeout(() => {
-            window.location.reload();
-					  }, 600); 
-        }  else{
-          store.addNotification({
-						...notification,
-						 title: "ooppps !",
-						 message: "please fill all fields correctly",
-						 type: "warning",
-					  });
-          }     
+        setTimeout(() => {
+          window.location.reload();
+        }, 600);
+      } else {
+        store.addNotification({
+          ...notification,
+          title: "ooppps !",
+          message: "please fill all fields correctly",
+          type: "warning",
+        });
+      }
     }
-  }
- 
-  return(
-    <div className="temp-div-signUp-container" >
+  };
+
+  return (
+    <div className="temp-div-signUp-container">
       <ReactNotification />
       <Container>
-        <Row className='justify-content-center'>
-          <Col md='9' lg='7' xl='6'>
-            <Card className='temp-div-signUp-mx-4-card'>
-              <CardBody className='p-4'>
+        <Row className="justify-content-center">
+          <Col md="9" lg="7" xl="6">
+            <Card className="temp-div-signUp-mx-4-card">
+              <CardBody className="p-4">
                 <Form id="temp-div-signUp-form">
                   <div className="mb-2 pageheading">
-                    <div className='col-sm-12 btn btn-primary' onClick={() => {window.location.href="/templates"}}>
-                      <i className="fas fa-arrow-circle-left"></i>&nbsp;   {t("signUpGoBack")}
+                    <div
+                      className="col-sm-12 btn btn-primary"
+                      onClick={() => {
+                        window.location.href = "/templates";
+                      }}
+                    >
+                      <i className="fas fa-arrow-circle-left"></i>&nbsp;{" "}
+                      {t("signUpGoBack")}
                     </div>
-                    {/* flag start */ }
+                    {/* flag start */}
                     <div className="dropdown_menu_sign_up">
                       {languagesGREN.map(({ code, country_code }) => (
                         <span
@@ -188,137 +246,180 @@ const UserSignUp = () => {
                         </span>
                       ))}
                     </div>
-                    {/* /** * flag end */ }
-     
+                    {/* /** * flag end */}
                   </div>
-                  <InputGroup className=' temp-div-signUp-mb-3'>
+                  <InputGroup className=" temp-div-signUp-mb-3">
                     <Input
                       className="tempForm-signup-input"
-                      type='text'
+                      type="text"
                       onChange={handleChange}
-                      name='firstName'
+                      name="firstName"
                       value={firstName}
-                      placeholder='First Name' ></Input><span>&#42;</span>
+                      placeholder="First Name"
+                    ></Input>
+                    <span>&#42;</span>
                   </InputGroup>
-                  <InputGroup className='temp-div-signUp-mb-3'>
+                  <InputGroup className="temp-div-signUp-mb-3">
                     <Input
                       className="tempForm-signup-input"
-                      type='text'
+                      type="text"
                       onChange={handleChange}
-                      name='lastName'
+                      name="lastName"
                       value={lastName}
-                      placeholder='Last Name' ></Input>&#42;
-                  </InputGroup>
-                  <InputGroup className=' temp-div-signUp-mb-3'>
-                    <Input
-                      className="tempForm-signup-input"
-                      type='text'
-                      name = 'email'
-                      value = {email}
-                      onChange={handleChange}
-                      placeholder='email'></Input>&#42;
-                  </InputGroup>
-                  <InputGroup className='temp-div-signUp-mb-3'>
-                    <Input
-                      className="tempForm-signup-input"
-                      type='password'
-                      name = 'password'
-                      value = {password}
-                      onChange={handleChange}
-                      placeholder='password'></Input>&#42;
-                  </InputGroup>
-                  <InputGroup className='temp-div-signUp-mb-3'>
-                    <Input
-                      className="tempForm-signup-input"
-                      type='password'
-                      name = 'password2'
-                      value = {password2}
-                      onChange={handleChange}
-                      placeholder='confirm password'></Input>&#42;
-                  </InputGroup>
-               
-                  <InputGroup className='temp-div-signUp-mb-3'>
-                    <label >M </label>
-                    <Input
-                      className="tempForm-signup-inputRadio"
-                      type='radio'
-                      name='genderId'
-                      onChange={e =>e.target.checked ? (userData.genderId='1'):null}
+                      placeholder="Last Name"
                     ></Input>
-                      <label >FM </label>
-                    <Input
-                      className="tempForm-signup-inputRadio"
-                      type='radio' 
-                      name='genderId'
-                      onChange={e =>e.target.checked ? (userData.genderId='2'):null}
-                    ></Input> 
-                    <label >Not S </label>
-                    <Input
-                      className="tempForm-signup-inputRadio"
-                      type='radio' 
-                      name='genderId'
-                      onChange={e =>e.target.checked ? (userData.genderId='3'):null}
-                    ></Input> &#42;
+                    &#42;
                   </InputGroup>
-                  <InputGroup className='temp-div-signUp-mb-3'>
-                    <label >Birthday </label>
+                  <InputGroup className=" temp-div-signUp-mb-3">
                     <Input
                       className="tempForm-signup-input"
-                      type='date'
+                      type="text"
+                      name="email"
+                      value={email}
                       onChange={handleChange}
-                      name='dateOfBirth'
-                 
+                      placeholder="email"
                     ></Input>
+                    &#42;
                   </InputGroup>
-                  <InputGroup >
-                
-                      <select id="countryId" name="countryId" 
-                        className='temp-div-signUp-mb-4' onChange={handleChangeCountry}>
-                          <option value={countries}>-Select Country-</option>
-                            { countries.map((country) =>
-                              <option key={country.id}value={country.id}>{country.country}</option> )
-                             }
-                      </select>&#42;
+                  <InputGroup className="temp-div-signUp-mb-3">
+                    <Input
+                      className="tempForm-signup-input"
+                      type="password"
+                      name="password"
+                      value={password}
+                      onChange={handleChange}
+                      placeholder="password"
+                    ></Input>
+                    &#42;
                   </InputGroup>
-                  <InputGroup >
-                
-                      <select id="cityId" name="cityId" 
-                        className='temp-div-signUp-mb-4' onChange={handleChange}>
-                          <option value={cityId}>-Select City-</option>
-                            { cities.map((city) =>
-                              <option key={city.id}value={city.id}>{city.cityName}/{city.state}</option> )
-                             }
-                      </select>
+                  <InputGroup className="temp-div-signUp-mb-3">
+                    <Input
+                      className="tempForm-signup-input"
+                      type="password"
+                      name="password2"
+                      value={password2}
+                      onChange={handleChange}
+                      placeholder="confirm password"
+                    ></Input>
+                    &#42;
+                  </InputGroup>
+
+                  <InputGroup className="temp-div-signUp-mb-3">
+                    <label>M </label>
+                    <Input
+                      className="tempForm-signup-inputRadio"
+                      type="radio"
+                      name="genderId"
+                      onChange={(e) =>
+                        e.target.checked ? (userData.genderId = "1") : null
+                      }
+                    ></Input>
+                    <label>FM </label>
+                    <Input
+                      className="tempForm-signup-inputRadio"
+                      type="radio"
+                      name="genderId"
+                      onChange={(e) =>
+                        e.target.checked ? (userData.genderId = "2") : null
+                      }
+                    ></Input>
+                    <label>Not S </label>
+                    <Input
+                      className="tempForm-signup-inputRadio"
+                      type="radio"
+                      name="genderId"
+                      onChange={(e) =>
+                        e.target.checked ? (userData.genderId = "3") : null
+                      }
+                    ></Input>{" "}
+                    &#42;
+                  </InputGroup>
+                  <InputGroup className="temp-div-signUp-mb-3">
+                    <label>Birthday </label>
+                    <Input
+                      className="tempForm-signup-input"
+                      type="date"
+                      onChange={handleChange}
+                      name="dateOfBirth"
+                    ></Input>
                   </InputGroup>
                   <InputGroup>
-                      <select id="languageId" name="languageId" 
-                        className='temp-div-signUp-mb-4' onChange={handleChange}>
-                          <option value={languageId}>Select Language</option>
-                            { languages.map((language) =>
-                              <option key={language.id} value={language.id}>{language.language}</option> )
-                            }
-                      </select>&#42;
+                    <select
+                      id="countryId"
+                      name="countryId"
+                      className="temp-div-signUp-mb-4"
+                      onChange={handleChangeCountry}
+                    >
+                      <option value={countries}>-Select Country-</option>
+                      {countries.map((country) => (
+                        <option key={country.id} value={country.id}>
+                          {country.country}
+                        </option>
+                      ))}
+                    </select>
+                    &#42;
                   </InputGroup>
                   <InputGroup>
-                    <select id="professionId" name="professionId" 
-                        className='temp-div-signUp-mb-4' onChange={handleChange}>
-                          <option value={professionId}>Select Profession</option>
-                            { professions.map((profession) =>
-                              <option key={profession.id}value={profession.id}>{profession.profession}</option> )
-                            }
-                      </select>&#42;
+                    <select
+                      id="cityId"
+                      name="cityId"
+                      className="temp-div-signUp-mb-4"
+                      onChange={handleChange}
+                    >
+                      <option value={cityId}>-Select City-</option>
+                      {cities.map((city) => (
+                        <option key={city.id} value={city.id}>
+                          {city.cityName}/{city.state}
+                        </option>
+                      ))}
+                    </select>
                   </InputGroup>
-                  <InputGroup className='temp-div-signUp-mb-3'>
+                  <InputGroup>
+                    <select
+                      id="languageId"
+                      name="languageId"
+                      className="temp-div-signUp-mb-4"
+                      onChange={handleChange}
+                    >
+                      <option value={languageId}>Select Language</option>
+                      {languages.map((language) => (
+                        <option key={language.id} value={language.id}>
+                          {language.language}
+                        </option>
+                      ))}
+                    </select>
+                    &#42;
+                  </InputGroup>
+                  <InputGroup>
+                    <select
+                      id="professionId"
+                      name="professionId"
+                      className="temp-div-signUp-mb-4"
+                      onChange={handleChange}
+                    >
+                      <option value={professionId}>Select Profession</option>
+                      {professions.map((profession) => (
+                        <option key={profession.id} value={profession.id}>
+                          {profession.profession}
+                        </option>
+                      ))}
+                    </select>
+                    &#42;
+                  </InputGroup>
+                  <InputGroup className="temp-div-signUp-mb-3">
                     <Input
                       className="tempForm-signup-input"
-                      type='text'
+                      type="text"
                       onChange={handleChange}
-                      name='lookingJobAt'
+                      name="lookingJobAt"
                       value={lookingJobAt}
-                      placeholder='looking Job At' ></Input>&#42;
+                      placeholder="looking Job At"
+                    ></Input>
+                    &#42;
                   </InputGroup>
-                  <Button onClick={addUser} id="temp-form-submit-btn" block>Create Account</Button>
-                  
+                  <Button onClick={addUser} id="temp-form-submit-btn" block>
+                    Create Account
+                  </Button>
                 </Form>
               </CardBody>
             </Card>
@@ -326,6 +427,6 @@ const UserSignUp = () => {
         </Row>
       </Container>
     </div>
-  )
-}
-export default UserSignUp
+  );
+};
+export default UserSignUp;

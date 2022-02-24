@@ -207,7 +207,7 @@ function Menu() {
                     <a href="/about">{t("about")}</a>
                   </li>
                   <li>
-                    <a href="#">{t("contact")}</a>
+                    <a href="/contact">{t("contact")}</a>
                   </li>
                 </ul>
               </li>
